@@ -1,3 +1,6 @@
+import MeetingTypeList from "@/components/MeetingTypeList";
+
+
 const Home = () => {
   const now = new Date();
 
@@ -5,7 +8,9 @@ const Home = () => {
     hour: "2-digit",
     minute: "2-digit",
   });
-  const date = now.toLocaleDateString("es-AR");
+  const date = new Intl.DateTimeFormat("es-AR", {
+    dateStyle: "full",
+  }).format(now);
 
   return (
     <section className="flex size-full flex-col gap-10 text-white">
@@ -20,6 +25,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <MeetingTypeList/>
     </section>
   );
 };
