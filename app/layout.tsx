@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,21 +17,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider
-      appearance={{
-        layout: {
-          logoImageUrl:"/icons/yoom-logo.svg",
-          socialButtonsVariant:"iconButton"
-        },
-        variables: {
-          colorText:"#fff",
-          colorPrimary:"#0E78F9",
-          colorBackground:"#1C1F2E",
-          colorInputBackground:"#252a41",
-          colorInputText:"#fff"
-        }
-      }}
+        appearance={{
+          layout: {
+            logoImageUrl: "/icons/yoom-logo.svg",
+            socialButtonsVariant: "iconButton",
+          },
+          variables: {
+            colorText: "#fff",
+            colorPrimary: "#0E78F9",
+            colorBackground: "#1C1F2E",
+            colorInputBackground: "#252a41",
+            colorInputText: "#fff",
+          },
+        }}
       >
-        <body className="bg-dark-2">{children}</body>
+        <body className="bg-dark-2">
+          <Toaster />
+          {children}
+        </body>
       </ClerkProvider>
     </html>
   );
