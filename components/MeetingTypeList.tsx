@@ -1,11 +1,12 @@
 "use client";
-import { useToast } from "@/hooks/use-toast";
+
 import { useUser } from "@clerk/nextjs";
 import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import HomeCard from "./HomeCard";
 import MeetingModal from "./MeetingModal";
+import { useToast } from "@/hooks/use-toast";
 
 const MeetingTypeList = () => {
   const { toast } = useToast();
