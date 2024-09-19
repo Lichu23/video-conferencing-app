@@ -29,13 +29,14 @@ const MeetingRoom = () => {
   const [showParticipants, setShowParticipants] = useState(false);
   const searchParams  = useSearchParams()
   const isPersonalRoom = !!searchParams.get("personal")
-  
+  //
   const {useCallCallingState} = useCallStateHooks()
   const callingState = useCallCallingState()
 
   if(callingState !== CallingState.JOINED) return <Loader/>  //loading when us tried to joined call 
 
 
+  
 
   const CallLayout = () => {
     switch (layout) {
