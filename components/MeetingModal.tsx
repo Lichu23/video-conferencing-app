@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Dialog, DialogContent } from "./ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
 
-interface MeetingModalProps {
+type MeetingModalProps = {
   isOpen: boolean;
   onClose: () => void;
   title: string;
