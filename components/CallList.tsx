@@ -1,14 +1,12 @@
-// @ts-nocheck
 "use client";
 
+import { useToast } from "@/hooks/use-toast";
 import { useGetCalls } from "@/hooks/useGetCalls";
 import { Call, CallRecording } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import MeetingCard from "./MeetingCard";
-import { useToast } from "@/hooks/use-toast";
-import { Toast } from "./ui/toast";
 
 const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
   const { endedCalls, upcomingCalls, callRecordings, isLoading } =
@@ -96,26 +94,26 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
                 : "icons/recordings.svg"
             }
             title={
-              (meeting as Call).state?.custom.description?.substring(0, 20) ||
-              meeting.filename?.substring(0, 20) ||
+              (meeting as Call).state?.custom?.description ||
+              (meeting as CallRecording).filename?.substring(0, 20) ||
               "No description"
             }
             date={
               (meeting as Call).state?.startsAt?.toLocaleString() ||
-              meeting.start_time.toLocaleString()
+              (meeting as CallRecording).start_time?.toLocaleString()
             }
             isPreviousMeeting={type === "ended"}
             buttonIcon1={type === "recordings" ? "/icons/play.svg" : undefined}
             buttonText={type === "recordings" ? "Play" : "Start"}
             handleClick={
-              type === "recordings"
-                ? () => router.push(`${meeting.url}`)
-                : () => router.push(`/meeting/${meeting.id}`)
+              type === 'recordings'
+                ? () => router.push(`${(meeting as CallRecording).url}`)
+                : () => router.push(`/meeting/${(meeting as Call).id}`)
             }
             link={
-              type === "recordings"
-                ? meeting.url
-                : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meeting.id}`
+              type === 'recordings'
+                ? (meeting as CallRecording).url
+                : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${(meeting as Call).id}`
             }
           />
         ))

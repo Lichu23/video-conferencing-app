@@ -1,10 +1,10 @@
 "use client";
-import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
-import Image from "next/image";
-import { Dialog, DialogContent } from "./ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
+import Image from "next/image";
+import { ReactNode } from "react";
+import { Button } from "./ui/button";
+import { Dialog, DialogContent } from "./ui/dialog";
 
 type MeetingModalProps = {
   isOpen: boolean;
@@ -28,9 +28,7 @@ const MeetingModal = ({
   children,
   handleClick,
   buttonText,
-  instantMeeting,
   image,
-  buttonClassName,
   buttonIcon,
 }: MeetingModalProps) => {
   return (
