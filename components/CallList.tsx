@@ -96,8 +96,8 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
                 : "icons/recordings.svg"
             }
             title={
-              (meeting as Call).state?.custom.description.substring(0, 20) ||
-              meeting.filename.substring(0, 20) ||
+              (meeting as Call).state?.custom.description?.substring(0, 20) ||
+              meeting.filename?.substring(0, 20) ||
               "No description"
             }
             date={
@@ -115,7 +115,7 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
             link={
               type === "recordings"
                 ? meeting.url
-                : `${process.env.NEXT_PUBIC_BASE_URL}/meeting/${meeting.id}`
+                : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meeting.id}`
             }
           />
         ))
